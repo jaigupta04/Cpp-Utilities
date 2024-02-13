@@ -31,7 +31,6 @@ void pop() {
     if (top == nullptr) {
         cout << "Stack is Empty" << endl;
     } else {
-        cout << "Popped item -> " << top->info << endl;
         Node* temp = top;
         top = top->next;
         delete temp;
