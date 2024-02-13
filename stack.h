@@ -29,7 +29,8 @@ void push(int item) {
 
 void pop() {
     if (top == nullptr) {
-        cout << "Stack is Empty" << endl;
+        // cout << "Stack is Empty" << endl;
+        return;
     } else {
         Node* temp = top;
         top = top->next;
