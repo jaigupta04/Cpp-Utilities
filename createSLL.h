@@ -1,31 +1,32 @@
 #ifndef CREATESLL_H
 #define CREATESLL_H
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 // Define the structure for a node in the linked list
-struct node {
+struct Node {
     int info;
-    struct node* next;
+    Node* next;
 };
 
 // Function to create a new node
-struct node* createNode(int info) {
-    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+Node* createNode(int info) {
+    Node* newNode = new Node;
     newNode->info = info;
-    newNode->next = NULL;
+    newNode->next = nullptr;
     return newNode;
 }
 
 // Function to insert a node at the end of the linked list
-struct node* createSLL(struct node* start, int info) {
-    struct node* newNode = createNode(info);
-    if (start == NULL) {
+Node* createSLL(Node* start, int info) {
+    Node* newNode = createNode(info);
+    if (start == nullptr) {
         start = newNode;
     } else {
-        struct node* current = start;
-        while (current->next != NULL) {
+        Node* current = start;
+        while (current->next != nullptr) {
             current = current->next;
         }
         current->next = newNode;
@@ -35,23 +36,22 @@ struct node* createSLL(struct node* start, int info) {
 }
 
 // Function to print the linked list
-void printList(struct node* start) {
-    struct node* current = start;
-    while (current != NULL) {
-        printf("%d -> ", current->info);
+void printList(Node* start) {
+    Node* current = start;
+    while (current != nullptr) {
+        cout << current->info << " -> ";
         current = current->next;
     }
-    printf("NULL\n");
-    free(current);
+    cout << "NULL" << endl;
 }
 
 // Function to free the memory allocated for the linked list
-void freeList(struct node* start) {
-    struct node* current = start;
-    struct node* nextNode;
-    while (current != NULL) {
+void freeList(Node* start) {
+    Node* current = start;
+    Node* nextNode;
+    while (current != nullptr) {
         nextNode = current->next;
-        free(current);
+        delete current;
         current = nextNode;
     }
 }
